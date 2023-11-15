@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const App = () => {
-  const [posts, setPosts] = useState([])
+  const [pages, setPosts] = useState([])
 
   useEffect(() => {
-    axios.get('http://localhost/wpapi/wp-json/wp/v2/posts?_embed')
+    axios.get('http://localhost/wpapi/wp-json/wp/v2/pages?_embed')
       .then((res) => setPosts(res.data))
   }, [])
 
-  const postsJsx = posts.map((post) => (
-    <li key={post.id} dangerouslySetInnerHTML={{ __html: post.content.rendered }}></li>
+  const pagesJsx = pages.map((page) => (
+    <li key={page.id} dangerouslySetInnerHTML={{ __html: page.content.rendered }}></li>
   ))
 
   return (
-    <ul>{postsJsx}</ul>
+    <ul>{pagesJsx}</ul>
   )
 }
 
